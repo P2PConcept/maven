@@ -1,0 +1,25 @@
+node('built-in')
+{
+    stage('ContinuousDownload') 
+    {
+        git 'https://github.com/P2PConcept/maven.git'
+    }
+    stage('ContinuousBuild') 
+    {
+        sh 'mvn package'
+    }
+    stage('ContinuousDeployment') 
+    {
+        deploy adapters: [tomcat9(credentialsId: '4880a9d5-3996-4334-84eb-609624ada9c6', path: '', url: 'http://172.31.93.249:8080')], contextPath: 'testapp', war: '**/*.war'
+    }
+    stage ('ContinuousTesting')
+    {
+        git 'https://github.com/P2PConcept/testingcode.git'
+        
+        sh 'java -jar /var/lib/jenkins/workspace/PP/testing.jar'
+    }
+        stage('ContinuousDelivery') 
+    {
+        deploy adapters: [tomcat9(credentialsId: '4880a9d5-3996-4334-84eb-609624ada9c6', path: '', url: 'http://172.31.84.106:8080')], contextPath: 'testjiapp', war: '**/*.war'
+    }
+}
