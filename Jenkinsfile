@@ -14,7 +14,7 @@ node('built-in') {
     stage('ContinuousTesting') 
     {
         git 'https://github.com/P2PConcept/testingcode.git'
-        sh 'java -jar /var/lib/jenkins/workspace/PipelineProject/testing.jar'
+        sh 'java -jar /var/lib/jenkins/workspace/multibranchpipeline_master/testing.jar'
     }
     stage('ContinuousDelivery') 
     {
