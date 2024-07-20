@@ -9,7 +9,7 @@ node('built-in') {
     }
     stage('ContinuousDeployment') 
     {
-        deploy adapters: [tomcat9(credentialsId: 'c6bec4da-c9af-48ff-8254-60b9bc385ae1', path: '', url: 'http://172.31.91.150:8080')], contextPath: 'credomaster', war: '**/*.war'
+        deploy adapters: [tomcat9(credentialsId: 'c6bec4da-c9af-48ff-8254-60b9bc385ae1', path: '', url: 'http://172.31.28.27:8080')], contextPath: 'credomaster', war: '**/*.war'
     }
     stage('ContinuousTesting') 
     {
